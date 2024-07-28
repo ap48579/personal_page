@@ -33,6 +33,180 @@ body {
 	line-height: 1;
 }
 
+/* Navbar Styles */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between; /* Space out title and links */
+    align-items: center;
+    z-index: 1;
+    background-color: #1a1a1a;
+    padding: 10px;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 20px; /* Space between title and left edge */
+}
+
+.link-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.link {
+    margin: 0;
+}
+
+.link a {
+    color: #fff;
+    opacity: 0.5;
+    text-transform: capitalize;
+    text-decoration: none;
+    padding: 10px 30px;
+    margin: 0 20px;
+    line-height: 40px; /* Adjusted for better alignment */
+    transition: 0.5s;
+    font-size: 20px;
+}
+
+.link a:hover, .link.active a {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-title {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .link-group {
+        flex-direction: column;
+    }
+
+    .link a {
+        margin: 10px 0; /* Adjust margins for vertical stacking */
+    }
+}
+
+
+#two {
+    padding: 50px 20px; /* Added padding to ensure there's space around the content */
+}
+.timeline {
+    display: block;
+    position: relative;
+    width: 80%;
+    margin: 150px auto; /* Center align the timeline */
+}
+
+.timeline .heading {
+    margin-bottom: 150px;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #fff;
+}
+
+.card {
+    width: 45%;
+    padding: 30px;
+    border-radius: 10px;
+    color: #fff;
+    display: block;
+    margin: 0;
+    position: relative;
+    background: #1a1a1a;
+}
+
+.card:nth-child(even) {
+    margin-left: auto;
+}
+
+.card:nth-child(even):before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 5px solid #1a1a1a;
+    background: #1a1a1a;
+}
+
+.card:nth-child(even):after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -8.5%;
+    transform: translateY(-50%);
+    width: 7%;
+    height: 2px;
+    background: #1a1a1a;
+    z-index: -1;
+}
+
+.card:nth-child(odd):before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -15%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 5px solid #1a1a1a;
+    background: #1a1a1a;
+}
+
+.card:nth-child(odd):after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -8.5%;
+    transform: translateY(-50%);
+    width: 7%;
+    height: 2px;
+    background: #1a1a1a;
+    z-index: -1;
+}
+
+/* Add a dashed line in the center */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: transparent;
+    border-left: 2px dashed #1a1a1a;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* Remove the dashed line from the cards */
+.card:nth-child(even) .card-body::after,
+.card:nth-child(odd) .card-body::after {
+    content: none;
+}
+
+
 ol, ul {
 	list-style: none;
 }
@@ -2685,6 +2859,7 @@ input, select, textarea {
 		margin-left: 35%;
 		max-width: 54em;
 		padding: 8em 4em 4em 4em;
+		padding-top: 60px;
 		width: calc(100% - 35%);
 	}
 
@@ -3142,6 +3317,7 @@ input, select, textarea {
 
 			header.major h2 {
 				font-size: 1.35em;
+				margin-bottom: 60px;
 			}
 
 		/* List */
