@@ -41,7 +41,96 @@
 
 
 				<!-- Two -->
-					<section id="two">
+				<section id="two">
+					<header class="major">
+						<h2>My Journey</h2>
+					</header>
+					<div class="horizontal-timeline">
+						<div class="timeline-item">
+							<div class="dot"></div>
+							<div class="label">UG IIT Madras</div>
+							<div class="year">2013-2017</div>
+						</div>
+						<div class="timeline-connector"></div>
+						<div class="timeline-item">
+							<div class="dot"></div>
+							<div class="label">PhD UT Austin</div>
+							<div class="year">2018-2023</div>
+						</div>
+						<div class="timeline-connector"></div>
+						<div class="timeline-item">
+							<div class="dot"></div>
+							<div class="label">MLE DELL Technologies</div>
+							<div class="year">2023-Present</div>
+						</div>
+					</div>
+				</section>
+
+				<style>
+				.horizontal-timeline {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					margin: 40px 0;
+				}
+
+				.timeline-item {
+					text-align: center;
+					position: relative;
+				}
+
+				.timeline-item .dot {
+					width: 14px;
+					height: 14px;
+					background-color: #333;
+					border-radius: 50%;
+					margin: 0 auto;
+				}
+
+				.timeline-item .label {
+					margin-top: 10px;
+					font-weight: bold;
+				}
+
+				.timeline-item .year {
+					margin-top: 5px;
+					font-size: 0.9em;
+					color: #666;
+				}
+
+				.timeline-connector {
+					flex-grow: 1;
+					height: 2px;
+					background-image: linear-gradient(to right, #333 33%, rgba(255, 255, 255, 0) 0%);
+					background-size: 10px 2px;
+					background-repeat: repeat-x;
+					position: relative;
+					top: -7px;
+				}
+
+				.timeline-connector::before,
+				.timeline-connector::after {
+					content: '';
+					display: block;
+					width: 14px;
+					height: 14px;
+					background-color: #333;
+					border-radius: 50%;
+					position: absolute;
+					top: -6px;
+				}
+
+				.timeline-connector::before {
+					left: -14px;
+				}
+
+				.timeline-connector::after {
+					right: -14px;
+				}
+				</style>
+
+				<!-- Three -->
+					<section id="three">
 						<h2>Recent Work</h2>
 						<div class="row">
 							<article class="col-6 col-12-xsmall work-item">
@@ -80,7 +169,7 @@
 						</ul>
 					</section>
 
-				<!-- Three -->
+				<!-- Three --
 					<section id="three">
 						<h2>Get In Touch</h2>
 						<p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
@@ -117,7 +206,7 @@
 							</div>
 						</div>
 					</section>
-
+				-->
 				<!-- Four -->
 				<!--
 					<section id="four">
