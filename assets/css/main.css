@@ -3395,3 +3395,77 @@ input, select, textarea {
 			}
 
 	}
+
+/* General Section Styling */
+#timeline {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#timeline .major h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* Timeline Container */
+.timeline-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 50%; /* Center the line vertically */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff; /* Line color */
+}
+
+/* Timeline Item */
+.timeline-item {
+    position: relative;
+    text-align: center;
+}
+
+.timeline-item .date {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333; /* Date color */
+    margin-bottom: 0.5rem; /* Space above dot */
+}
+
+.timeline-item .dot {
+    width: 20px;
+    height: 20px;
+    background-color: #007bff; /* Dot color */
+    border-radius: 50%;
+    position: relative;
+    z-index: 1; /* Ensure dots are above the line */
+}
+
+.timeline-item .description {
+    margin-top: 0.5rem; /* Space below dot */
+    font-size: 0.9rem;
+    color: #666; /* Description text color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline-container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the left */
+        gap: 2rem; /* Add spacing between items */
+        padding-left: 1rem; 
+   }
+   
+   .timeline-container::before {
+       display:none;} 
+}
