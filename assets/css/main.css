@@ -82,6 +82,9 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+	body {
+		font-size: 14px;
+	  }
     .navbar {
         flex-direction: column;
         align-items: center;
@@ -184,26 +187,6 @@ body {
     height: 2px;
     background: #1a1a1a;
     z-index: -1;
-}
-
-/* Add a dashed line in the center */
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 2px;
-    background: transparent;
-    border-left: 2px dashed #1a1a1a;
-    transform: translateX(-50%);
-    z-index: -1;
-}
-
-/* Remove the dashed line from the cards */
-.card:nth-child(even) .card-body::after,
-.card:nth-child(odd) .card-body::after {
-    content: none;
 }
 
 
@@ -3396,76 +3379,85 @@ input, select, textarea {
 
 	}
 
-/* General Section Styling */
-#timeline {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    text-align: center;
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
-#timeline .major h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 2rem;
+#timeline {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+header.major h2 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Timeline Container */
 .timeline-container {
-    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
+    flex-direction: column;
+    gap: 20px; /* Adds spacing between items */
 }
 
-.timeline-container::before {
-    content: '';
-    position: absolute;
-    top: 50%; /* Center the line vertically */
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #007bff; /* Line color */
+/* Individual Timeline Items */
+.timeline-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
-/* Timeline Item */
-.timeline-item {
-    position: relative;
+.timeline-item p {
+    font-size: 1em;
+    color: #555; /* Optional for softer text color */
+}
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+#experience {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+header.major h2 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.timeline-item .date {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333; /* Date color */
-    margin-bottom: 0.5rem; /* Space above dot */
+/* Experience Container */
+.experience-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Adds spacing between items */
 }
 
-.timeline-item .dot {
-    width: 20px;
-    height: 20px;
-    background-color: #007bff; /* Dot color */
-    border-radius: 50%;
-    position: relative;
-    z-index: 1; /* Ensure dots are above the line */
+/* Individual Experience Items */
+.experience-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
 }
 
-.timeline-item .description {
-    margin-top: 0.5rem; /* Space below dot */
-    font-size: 0.9rem;
-    color: #666; /* Description text color */
+.experience-item p {
+    font-size: 1em;
+    margin-bottom: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .timeline-container {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        align-items: flex-start; /* Align items to the left */
-        gap: 2rem; /* Add spacing between items */
-        padding-left: 1rem; 
-   }
-   
-   .timeline-container::before {
-       display:none;} 
+.experience-item ul {
+    list-style-type: disc; /* Bullet points */
+    margin-left: 20px; /* Indentation for bullets */
+}
+
+.experience-item ul li {
+    margin-bottom: 10px; /* Space between bullet points */
 }
