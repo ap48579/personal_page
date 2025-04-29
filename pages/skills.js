@@ -3,28 +3,23 @@ import styles from '../styles/Skills.module.css';
 
 const skills = {
   ai_ml: [
-    "Deep Learning (CNN, RNN, Transformers)",
-    "NLP (LLMs, BERT, GPT, RAG)",
-    "Computer Vision",
-    "Reinforcement Learning",
-    "Transfer Learning",
+    "Computer vision",
+    "NLP",
+    "LLM",
     "Prompt Engineering",
+    "RAG",
+    "Time series forecasting",
     "Model Evaluation & Explainability",
-    "Hyperparameter Tuning",
-    "Model Deployment",
-    "MLOps"
+    "Hyperparameter Tuning"
   ],
   devops: [
     "Docker",
     "Kubernetes",
-    "AWS (EC2, S3, SageMaker)",
+    "CI/CD",
     "Azure ML",
-    "GCP (Vertex AI)",
-    "CI/CD (GitHub Actions, Jenkins)",
-    "Terraform",
-    "MLflow",
-    "DVC",
-    "Linux/Unix"
+    "Azure datalake",
+    "Databricks",
+    "MLflow"
   ],
   programming: [
     "Python",
@@ -36,7 +31,7 @@ const skills = {
     "FastAPI",
     "SQL",
     "JavaScript",
-    "TypeScript"
+    "C"
   ]
 };
 

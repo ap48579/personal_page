@@ -7,42 +7,40 @@ const experiences = [
     org: 'Dell technologies',
     date: '2023 – Present',
     description: [
-      'Leading a team building advanced AI solutions for medical imaging.',
-      'Architected scalable ML pipelines and deployed models in production.',
-      'Worked with cross-functional teams to deliver AI-driven MedTech products.'
+      'Building multimodal AI agents to assist with hardware repair',
+      'Developed a Gen business intelligence chatbot to answer questions on structured data (SQL, csv, or excel)',
+      'Expert at developing supply chain forecasting models to support demand planning, and inventory management.'
     ]
   },
   {
-    title: 'Data science intern',
+    title: 'Data science intern/co-op',
     org: 'Dell technologies',
     date: '2022 – 2023',
     description: [
-      'Developed deep learning models for brain imaging analysis.',
-      'Optimized model performance and reliability for clinical use.'
+      'Developed an XGboost model to forecast DFS parts return.',
+      'Developed a tool to map each customer address to nearest.'
     ]
   },
   {
     title: 'Graduate researcher',
     org: 'UT Austin',
-    date: '2021 – 2022',
+    date: '2018 – 2023',
     description: [
-      'Built and maintained ML infrastructure for data processing.',
-      'Collaborated with researchers to translate ideas into products.'
+      'Built statistical models to better understand ion transport in polymeric melts.'
     ]
   },
   {
     title: 'Product manager',
-    org: 'DCKAP',
-    date: '2020 – 2021',
+    org: 'ICICI Bank',
+    date: '2017 – 2018',
     description: [
-      'Implemented AI features for enterprise software solutions.',
-      'Worked on NLP and computer vision projects.'
+      'Co-owner of strategy, roadmap, and customer experience for payment modules in the mobile banking app of ICICI bank.'
     ]
   },
   {
     title: 'B.Tech - Chemical engineering',
     org: 'IIT Madras, India',
-    date: '2015 – 2019',
+    date: '2013 – 2017',
     description: []
   }
 ];

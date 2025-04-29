@@ -3,20 +3,21 @@ import styles from '../styles/Projects.module.css';
 
 const projects = [
   {
-    title: 'Neural Black - AI for Brain Tumor',
-    description: 'Brain tumor detection system using CNNs',
+    title: 'Agentic coding assistant',
+    tools:'[ Langgraph, codellama, ollama, and streamlit ]',
+    description: 'Chatbot that helps debug a code, and develop unit tests for a given user code.',
     mediumUrl: '#',
-    githubUrl: '#'
+    githubUrl: 'https://github.com/ap48579/ML_portfolio/tree/dev/chatbot/coding_assistant'
   },
   {
-    title: 'Drive AI - Warning System',
-    description: 'Computer vision for driver assistance',
+    title: 'Cricket match win probability',
+    description: 'Real time win probability during an ipl match',
     mediumUrl: '#',
-    githubUrl: '#'
+    githubUrl: 'https://github.com/ap48579/ML_portfolio/tree/dev/chatbot/ipl_predictions'
   },
   {
-    title: 'Image Super-Resolution GAN',
-    description: 'Photo-realistic image enhancement',
+    title: 'Get nutrition content from food labels',
+    description: 'Multimodal agent to interact with food labels',
     mediumUrl: '#',
     githubUrl: '#'
   },
@@ -39,6 +40,7 @@ export default function Projects() {
                 <div key={idx} className={styles.projectCard}>
                   <div className={styles.cardContent}>
                     <h3 className={styles.projectTitle}>{project.title}</h3>
+                    <p className={styles.projectTools}>{project.tools}</p>
                     <p className={styles.projectDesc}>{project.description}</p>
                     <div className={styles.links}>
                       {project.mediumUrl && (
