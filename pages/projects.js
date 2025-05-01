@@ -24,6 +24,7 @@ const projects = [
   // Add more projects as needed
 ];
 
+
 export default function Projects() {
   return (
     <>
