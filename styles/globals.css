@@ -1,12 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
 html,
 body {
-  padding: 0;
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f9f9fb;
-  color: #22223b;
+  padding: 0;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background-color: #f8f8f8;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 a {
@@ -14,6 +21,321 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* ── Snap scroll container ──────────────────────── */
+
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 105, 117, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+.snap-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.snap-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.snap-container::-webkit-scrollbar-thumb {
+  background: rgba(44, 105, 117, 0.6);
+  border-radius: 3px;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* ── Animations ─────────────────────────────────── */
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.anim-left {
+  animation: fadeInLeft 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-right {
+  animation: fadeInRight 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-up {
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-scale {
+  animation: scaleIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* ── Section label ──────────────────────────────── */
+
+.section-label {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* ── Hero buttons ───────────────────────────────── */
+
+.hero-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(44, 105, 117, 0.4);
+  color: #2c6975;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.hero-btn:hover {
+  background: #2c6975;
+  color: white;
+  border-color: #2c6975;
+}
+
+/* ── Experience horizontal cards ────────────────── */
+
+.cards-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 0 40px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 105, 117, 0.6) rgba(0, 0, 0, 0.08);
+}
+
+.cards-track::-webkit-scrollbar {
+  height: 5px;
+}
+
+.cards-track::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+}
+
+.cards-track::-webkit-scrollbar-thumb {
+  background: rgba(44, 105, 117, 0.6);
+  border-radius: 3px;
+}
+
+.exp-card {
+  flex-shrink: 0;
+  width: 320px;
+  scroll-snap-align: center;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(104, 178, 160, 0.15) 100%);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.exp-card:hover {
+  box-shadow: 0 8px 32px rgba(44, 105, 117, 0.15);
+}
+
+/* ── Projects horizontal slider ─────────────────── */
+
+.projects-track {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 105, 117, 0.6) rgba(0, 0, 0, 0.08);
+}
+
+.projects-track::-webkit-scrollbar {
+  height: 5px;
+}
+
+.projects-track::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.projects-track::-webkit-scrollbar-thumb {
+  background: rgba(44, 105, 117, 0.6);
+  border-radius: 3px;
+}
+
+.project-slide {
+  flex-shrink: 0;
+  width: 100vw;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 48px 60px;
+  gap: 24px;
+}
+
+/* ── Skills grid ────────────────────────────────── */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.skill-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px 12px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid rgba(44, 105, 117, 0.15);
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
+  cursor: default;
+}
+
+.skill-tile:hover {
+  border-color: #68b2a0;
+  color: #2c6975;
+  box-shadow: 0 4px 16px rgba(44, 105, 117, 0.12);
+}
+
+/* ── Nav social icons ───────────────────────────── */
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #6b7280;
+  transition: color 0.15s;
+}
+
+.social-icon:hover {
+  color: #2c6975;
+}
+
+/* ── Floating home ──────────────────────────────── */
+
+.float-home {
+  position: sticky;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.float-home a {
+  pointer-events: all;
+  width: 40px;
+  height: 40px;
+  background: rgba(44, 105, 117, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background 0.15s;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.float-home a:hover {
+  background: #2c6975;
+}
+
+/* ── Mobile ─────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .section-label {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+  }
+
+  .exp-card {
+    width: 280px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .project-slide {
+    padding: 120px 24px 60px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .about-grid > div:last-child {
+    display: none;
+  }
 }
