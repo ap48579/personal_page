@@ -64,11 +64,21 @@ const projects = [
 ];
 
 const skillGroups = [
-  'LLMs & Gen AI', 'RAG', 'Prompt Engineering', 'Computer Vision',
-  'NLP', 'Time Series', 'Model Evaluation', 'Azure ML',
-  'Databricks', 'MLflow', 'Docker', 'Kubernetes',
-  'Python', 'PyTorch', 'TensorFlow', 'scikit-learn',
-  'Pandas', 'FastAPI', 'SQL', 'CI/CD',
+  {
+    label: 'AI / ML',
+    icon: 'brain',
+    items: ['LLMs & Gen AI', 'RAG', 'Prompt Engineering', 'Computer Vision', 'NLP', 'Time Series', 'Model Evaluation'],
+  },
+  {
+    label: 'MLOps & Infra',
+    icon: 'gear',
+    items: ['Azure ML', 'Databricks', 'MLflow', 'Docker', 'Kubernetes', 'Azure Data Lake', 'CI/CD'],
+  },
+  {
+    label: 'Languages & Frameworks',
+    icon: 'code',
+    items: ['Python', 'PyTorch', 'TensorFlow', 'scikit-learn', 'Pandas', 'FastAPI', 'SQL'],
+  },
 ];
 
 // ─── Typewriter hook ──────────────────────────────────────────────────────────
@@ -165,7 +175,7 @@ function BackgroundCircles() {
           position: 'absolute',
           width: size, height: size,
           borderRadius: '50%',
-          border: `1px solid ${i === 3 ? 'rgba(44,105,117,0.15)' : 'rgba(34,38,45,0.15)'}`,
+          border: `1px solid ${i === 3 ? 'rgba(184,69,0,0.15)' : 'rgba(34,38,45,0.15)'}`,
           animation: i === 3
             ? 'pulse 3s ease-in-out infinite'
             : `ping ${1.4 + i * 0.3}s cubic-bezier(0,0,0.2,1) ${i * 0.4}s infinite`,
@@ -202,7 +212,7 @@ function Header() {
         textTransform: 'uppercase', letterSpacing: '0.08em',
         transition: 'color 0.15s',
       }}
-        onMouseEnter={e => e.currentTarget.style.color = '#2c6975'}
+        onMouseEnter={e => e.currentTarget.style.color = '#b84500'}
         onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
       >
         <MailIcon size={18} />
@@ -217,9 +227,8 @@ function Header() {
 function Hero() {
   const typed = useTypewriter([
     "Hi, I'm Akhilesh 👋",
-    "I build AI/ML systems",
-    "I like solving hard problems 🤔",
-    "Currently at Dell Technologies",
+    "I turn ideas into AI",
+    "Let's build something greats",
   ]);
 
   return (
@@ -236,8 +245,8 @@ function Hero() {
       <div className="anim-scale" style={{
         width: 128, height: 128, borderRadius: '50%',
         overflow: 'hidden', position: 'relative', zIndex: 10,
-        border: '3px solid rgba(104,178,160,0.4)',
-        boxShadow: '0 0 0 6px rgba(44,105,117,0.08)',
+        border: '3px solid rgba(212,98,42,0.4)',
+        boxShadow: '0 0 0 6px rgba(184,69,0,0.08)',
       }}>
         <img src="/profile_pic.png" alt="Akhilesh Paspureddi"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -249,7 +258,7 @@ function Hero() {
           fontSize: 13, fontWeight: 600, letterSpacing: '0.15em',
           textTransform: 'uppercase', color: '#6b7280', marginBottom: 12,
         }}>
-          Machine Learning Engineer
+          AI Engineer
         </p>
         <h1 style={{
           fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 600,
@@ -259,7 +268,7 @@ function Hero() {
           <span>{typed}</span>
           <span style={{
             display: 'inline-block', width: 2, height: '0.8em',
-            background: '#68b2a0', marginLeft: 4, verticalAlign: 'middle',
+            background: '#d4622a', marginLeft: 4, verticalAlign: 'middle',
             animation: 'blink 1.1s step-end infinite',
           }} />
         </h1>
@@ -274,6 +283,119 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+// ─── Agentic Illustration ─────────────────────────────────────────────────────
+
+function AgenticIllustration() {
+  const cx = 200, cy = 178;
+  const agents = [
+    { x: 72,  y: 75,  label: 'Research', icon: 'search' },
+    { x: 328, y: 75,  label: 'Code',     icon: 'code'   },
+    { x: 72,  y: 295, label: 'Analyze',  icon: 'chart'  },
+    { x: 328, y: 295, label: 'Deploy',   icon: 'rocket' },
+  ];
+
+  return (
+    <svg viewBox="0 0 400 390" fill="none" xmlns="http://www.w3.org/2000/svg"
+      style={{ width: '100%', maxWidth: 380, height: 'auto' }}>
+
+      {/* Soft center aura */}
+      <circle cx={cx} cy={cy} r="92" fill="rgba(184,69,0,0.03)" />
+      <circle cx={cx} cy={cy} r="58" fill="rgba(184,69,0,0.045)" />
+
+      {/* Dashed connection lines */}
+      {agents.map((a, i) => (
+        <line key={i}
+          x1={cx} y1={cy} x2={a.x} y2={a.y}
+          stroke="#b84500" strokeWidth="1" strokeOpacity="0.18"
+          strokeDasharray="5 4"
+        />
+      ))}
+
+      {/* Agent circles */}
+      {agents.map((a) => (
+        <g key={a.label}>
+          <circle cx={a.x} cy={a.y} r="30"
+            fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.38" />
+          {a.icon === 'search' && <>
+            <circle cx={a.x - 3} cy={a.y - 3} r="9" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.65" />
+            <line x1={a.x + 4} y1={a.y + 4} x2={a.x + 11} y2={a.y + 11} stroke="#b84500" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.65" />
+          </>}
+          {a.icon === 'code' && <>
+            <path d={`M${a.x-10} ${a.y-5}L${a.x-16} ${a.y}L${a.x-10} ${a.y+5}`} stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.65" />
+            <path d={`M${a.x+10} ${a.y-5}L${a.x+16} ${a.y}L${a.x+10} ${a.y+5}`} stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.65" />
+            <line x1={a.x-4} y1={a.y+7} x2={a.x+4} y2={a.y-7} stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.65" />
+          </>}
+          {a.icon === 'chart' && <>
+            <rect x={a.x - 10} y={a.y + 1} width="6" height="7" fill="#b84500" fillOpacity="0.45" rx="1" />
+            <rect x={a.x - 2} y={a.y - 6} width="6" height="14" fill="#b84500" fillOpacity="0.45" rx="1" />
+            <rect x={a.x + 6} y={a.y - 2} width="6" height="10" fill="#b84500" fillOpacity="0.45" rx="1" />
+          </>}
+          {a.icon === 'rocket' && <>
+            <path d={`M${a.x} ${a.y-12}L${a.x-7} ${a.y+7}L${a.x} ${a.y+2}L${a.x+7} ${a.y+7}Z`} fill="#b84500" fillOpacity="0.3" stroke="#b84500" strokeWidth="1" strokeLinejoin="round" />
+            <circle cx={a.x} cy={a.y - 4} r="3" fill="#b84500" fillOpacity="0.5" />
+            <line x1={a.x - 7} y1={a.y + 7} x2={a.x - 10} y2={a.y + 13} stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.5" />
+            <line x1={a.x + 7} y1={a.y + 7} x2={a.x + 10} y2={a.y + 13} stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.5" />
+          </>}
+          <text x={a.x} y={a.y + 47} textAnchor="middle"
+            fontSize="11" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">
+            {a.label}
+          </text>
+        </g>
+      ))}
+
+      {/* Engineer figure — chilling in chair */}
+      {/* Chair base */}
+      <rect x="152" y="207" width="98" height="9" rx="4.5" fill="rgba(184,69,0,0.1)" />
+      {/* Chair back */}
+      <rect x="236" y="166" width="8" height="54" rx="4" fill="rgba(184,69,0,0.1)" />
+
+      {/* Torso — leaning back */}
+      <rect x="165" y="166" width="62" height="44" rx="12"
+        fill="rgba(184,69,0,0.08)" stroke="#b84500" strokeWidth="1.5" />
+
+      {/* Head */}
+      <circle cx="183" cy="151" r="15"
+        fill="rgba(184,69,0,0.07)" stroke="#b84500" strokeWidth="1.5" />
+
+      {/* Face */}
+      <circle cx="179" cy="149" r="1.5" fill="#b84500" />
+      <circle cx="187" cy="149" r="1.5" fill="#b84500" />
+      <path d="M178 155 Q183 160 188 155" stroke="#b84500" strokeWidth="1.4" strokeLinecap="round" />
+
+      {/* Left arm — raised/waving casually */}
+      <path d="M165 178 L148 162 L140 165" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* Right arm — holding coffee */}
+      <path d="M227 178 L240 165" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Mug */}
+      <rect x="238" y="157" width="15" height="12" rx="2.5"
+        fill="rgba(184,69,0,0.12)" stroke="#b84500" strokeWidth="1.2" />
+      <path d="M253 160 Q258 160 258 163.5 Q258 167 253 167"
+        stroke="#b84500" strokeWidth="1.2" fill="none" />
+      {/* Steam */}
+      <path d="M243 155 Q241 150 243 146" stroke="#b84500" strokeWidth="1" strokeLinecap="round" strokeOpacity="0.35" />
+      <path d="M248 154 Q246 149 248 145" stroke="#b84500" strokeWidth="1" strokeLinecap="round" strokeOpacity="0.35" />
+
+      {/* Legs — relaxed on ottoman */}
+      <path d="M178 211 L176 226 L158 226" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M213 211 L215 226 L233 226" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* Caption */}
+      <text x="196" y="250" textAnchor="middle"
+        fontSize="10" fill="#c4b5a5" fontFamily="DM Sans, system-ui, sans-serif" fontStyle="italic">
+        you (chilling)
+      </text>
+
+      {/* Floating accent dots */}
+      <circle cx="143" cy="122" r="3.5" fill="#b84500" fillOpacity="0.15" />
+      <circle cx="257" cy="120" r="3.5" fill="#b84500" fillOpacity="0.15" />
+      <circle cx="137" cy="236" r="3" fill="#b84500" fillOpacity="0.15" />
+      <circle cx="263" cy="234" r="3" fill="#b84500" fillOpacity="0.15" />
+      <circle cx="200" cy="90" r="2.5" fill="#b84500" fillOpacity="0.1" />
+    </svg>
   );
 }
 
@@ -299,7 +421,7 @@ function AboutSection() {
         <div>
           <p style={{
             fontSize: 11, fontWeight: 600, letterSpacing: '0.14em',
-            textTransform: 'uppercase', color: '#68b2a0', marginBottom: 16, marginTop: 0,
+            textTransform: 'uppercase', color: '#d4622a', marginBottom: 16, marginTop: 0,
           }}>
             A bit about me
           </p>
@@ -313,13 +435,13 @@ function AboutSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <p style={{ fontSize: 15, color: '#374151', lineHeight: 1.75, margin: 0 }}>
               I&rsquo;m a Machine Learning Engineer who went from Chemical Engineering at{' '}
-              <strong style={{ color: '#2c6975' }}>IIT Madras</strong> to Product Management at{' '}
-              <strong style={{ color: '#2c6975' }}>ICICI Bank</strong>, then research at{' '}
-              <strong style={{ color: '#2c6975' }}>UT Austin</strong> before finding where I
+              <strong style={{ color: '#b84500' }}>IIT Madras</strong> to Product Management at{' '}
+              <strong style={{ color: '#b84500' }}>ICICI Bank</strong>, then research at{' '}
+              <strong style={{ color: '#b84500' }}>UT Austin</strong> before finding where I
               thrive most — building intelligent systems at scale.
             </p>
             <p style={{ fontSize: 15, color: '#374151', lineHeight: 1.75, margin: 0 }}>
-              At <strong style={{ color: '#2c6975' }}>Dell Technologies</strong> I work on
+              At <strong style={{ color: '#b84500' }}>Dell Technologies</strong> I work on
               multimodal AI agents, generative BI tools, and forecasting pipelines that power
               real supply chain decisions. I care deeply about shipping AI that actually works
               in production.
@@ -333,29 +455,16 @@ function AboutSection() {
               { value: 'IIT', label: 'Madras Alum' },
             ].map(({ value, label }) => (
               <div key={label}>
-                <p style={{ fontSize: 28, fontWeight: 700, color: '#2c6975', margin: '0 0 2px' }}>{value}</p>
+                <p style={{ fontSize: 28, fontWeight: 700, color: '#b84500', margin: '0 0 2px' }}>{value}</p>
                 <p style={{ fontSize: 12, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>{label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Photo */}
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{
-            width: 260, height: 320, borderRadius: 20, overflow: 'hidden',
-            boxShadow: '0 20px 60px rgba(44,105,117,0.15)',
-            border: '2px solid rgba(104,178,160,0.2)',
-            position: 'relative',
-          }}>
-            <img src="/profile_pic.png" alt="Akhilesh Paspureddi"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
-            {/* Teal overlay strip */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0, height: 4,
-              background: 'linear-gradient(90deg, #2c6975, #68b2a0)',
-            }} />
-          </div>
+        {/* Agentic illustration */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <AgenticIllustration />
         </div>
       </div>
     </section>
@@ -381,7 +490,7 @@ function ExperienceSection() {
               <h3 style={{ fontSize: 18, fontWeight: 400, color: '#000', margin: '0 0 4px' }}>
                 {exp.title}
               </h3>
-              <p style={{ fontSize: 16, fontWeight: 700, color: '#68b2a0', margin: '0 0 4px' }}>
+              <p style={{ fontSize: 16, fontWeight: 700, color: '#d4622a', margin: '0 0 4px' }}>
                 {exp.org}
               </p>
               <p style={{ fontSize: 12, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 16px' }}>
@@ -425,7 +534,7 @@ function ProjectsSection() {
       {/* Diagonal teal band — Mitchell's signature */}
       <div style={{
         position: 'absolute', top: '20%', left: 0, right: 0,
-        height: 480, background: 'rgba(44,105,117,0.06)',
+        height: 480, background: 'rgba(184,69,0,0.06)',
         transform: 'skewY(-6deg)', pointerEvents: 'none', zIndex: 0,
       }} />
 
@@ -435,9 +544,9 @@ function ProjectsSection() {
             {/* Large project number */}
             <div style={{
               width: 120, height: 120, borderRadius: '50%',
-              background: 'linear-gradient(135deg, rgba(44,105,117,0.12) 0%, rgba(104,178,160,0.2) 100%)',
+              background: 'linear-gradient(135deg, rgba(184,69,0,0.12) 0%, rgba(212,98,42,0.2) 100%)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 36, fontWeight: 700, color: '#2c6975',
+              fontSize: 36, fontWeight: 700, color: '#b84500',
             }}>
               0{i + 1}
             </div>
@@ -445,7 +554,7 @@ function ProjectsSection() {
             {/* Content */}
             <div style={{ maxWidth: 600, textAlign: 'center' }}>
               <h3 style={{ fontSize: 'clamp(20px, 3vw, 32px)', fontWeight: 600, margin: '0 0 16px' }}>
-                <span style={{ textDecoration: 'underline', textDecorationColor: 'rgba(44,105,117,0.5)', textDecorationThickness: 2 }}>
+                <span style={{ textDecoration: 'underline', textDecorationColor: 'rgba(184,69,0,0.5)', textDecorationThickness: 2 }}>
                   Project {i + 1}:
                 </span>{' '}
                 {p.title}
@@ -456,7 +565,7 @@ function ProjectsSection() {
                 {p.stack.map(s => (
                   <span key={s} style={{
                     fontSize: 12, padding: '4px 12px', borderRadius: 100,
-                    background: 'rgba(44,105,117,0.1)', color: '#2c6975', fontWeight: 500,
+                    background: 'rgba(184,69,0,0.1)', color: '#b84500', fontWeight: 500,
                   }}>{s}</span>
                 ))}
               </div>
@@ -469,12 +578,12 @@ function ProjectsSection() {
                 <a href={p.github} target="_blank" rel="noopener noreferrer" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,
                   padding: '10px 20px', borderRadius: 6,
-                  background: '#2c6975', color: 'white',
+                  background: '#b84500', color: 'white',
                   fontSize: 14, fontWeight: 500,
                   transition: 'background 0.15s',
                 }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#1e4f59'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#2c6975'}
+                  onMouseEnter={e => e.currentTarget.style.background = '#8b3300'}
+                  onMouseLeave={e => e.currentTarget.style.background = '#b84500'}
                 >
                   <GitHubIcon size={15} /> View Code <ArrowIcon />
                 </a>
@@ -491,6 +600,34 @@ function ProjectsSection() {
   );
 }
 
+// ─── Skill group icons ────────────────────────────────────────────────────────
+
+const SkillIcon = ({ type, size = 22 }) => {
+  if (type === 'brain') return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#b84500" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.5 2a2.5 2.5 0 0 1 5 0v.5" />
+      <path d="M9 2.5C6.5 2.5 4 4.5 4 7.5c0 1.5.5 2.5 1 3.5-.5.5-1 1.5-1 2.5 0 2 1.5 3.5 3.5 3.5" />
+      <path d="M15 2.5C17.5 2.5 20 4.5 20 7.5c0 1.5-.5 2.5-1 3.5.5.5 1 1.5 1 2.5 0 2-1.5 3.5-3.5 3.5" />
+      <path d="M12 17v5" />
+      <path d="M9 17h6" />
+      <path d="M8 10.5a4 4 0 0 0 8 0" />
+    </svg>
+  );
+  if (type === 'gear') return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#b84500" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
+  );
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#b84500" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+      <line x1="14" y1="4" x2="10" y2="20" />
+    </svg>
+  );
+};
+
 // ─── Skills ────────────────────────────────────────────────────────────────────
 
 function SkillsSection() {
@@ -502,17 +639,35 @@ function SkillsSection() {
       padding: '0 32px',
     }}>
       <span className="section-label">Skills</span>
-      <p style={{
-        position: 'absolute', top: 112,
-        fontSize: 12, color: '#9ca3af', letterSpacing: '0.08em',
-        textTransform: 'uppercase',
-      }}>
-        Hover over a skill
-      </p>
 
-      <div className="skills-grid" style={{ maxWidth: 720 }}>
-        {skillGroups.map(skill => (
-          <div key={skill} className="skill-tile">{skill}</div>
+      <div className="skills-groups">
+        {skillGroups.map(group => (
+          <div key={group.label} className="skill-group-card">
+            {/* Card header */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{
+                width: 38, height: 38, borderRadius: 10,
+                background: 'rgba(184,69,0,0.08)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <SkillIcon type={group.icon} size={20} />
+              </div>
+              <h3 style={{
+                fontSize: 14, fontWeight: 600, color: '#1c1c1a',
+                margin: 0, letterSpacing: '-0.01em',
+              }}>
+                {group.label}
+              </h3>
+            </div>
+
+            {/* Skill pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {group.items.map(skill => (
+                <span key={skill} className="skill-pill">{skill}</span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>
@@ -534,7 +689,7 @@ function ContactSection() {
       <div style={{ maxWidth: 480 }}>
         <p style={{
           fontSize: 11, fontWeight: 600, letterSpacing: '0.14em',
-          textTransform: 'uppercase', color: '#68b2a0', marginBottom: 12,
+          textTransform: 'uppercase', color: '#d4622a', marginBottom: 12,
         }}>
           Let&rsquo;s talk
         </p>
@@ -554,11 +709,11 @@ function ContactSection() {
           <a href="mailto:p.akhilesh.ch13b093@gmail.com" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '12px 24px', borderRadius: 6,
-            background: '#2c6975', color: 'white',
+            background: '#b84500', color: 'white',
             fontSize: 15, fontWeight: 500, transition: 'background 0.15s',
           }}
-            onMouseEnter={e => e.currentTarget.style.background = '#1e4f59'}
-            onMouseLeave={e => e.currentTarget.style.background = '#2c6975'}
+            onMouseEnter={e => e.currentTarget.style.background = '#8b3300'}
+            onMouseLeave={e => e.currentTarget.style.background = '#b84500'}
           >
             <MailIcon size={17} /> p.akhilesh.ch13b093@gmail.com
           </a>
@@ -566,24 +721,24 @@ function ContactSection() {
             <a href="https://github.com/ap48579" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
               padding: '10px 18px', borderRadius: 6,
-              border: '1px solid rgba(44,105,117,0.3)', color: '#2c6975',
+              border: '1px solid rgba(184,69,0,0.3)', color: '#b84500',
               fontSize: 14, fontWeight: 500, background: 'transparent',
               transition: 'all 0.15s',
             }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#2c6975'; e.currentTarget.style.color = 'white'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2c6975'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#b84500'; e.currentTarget.style.color = 'white'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#b84500'; }}
             >
               <GitHubIcon size={16} /> GitHub
             </a>
             <a href="#" style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
               padding: '10px 18px', borderRadius: 6,
-              border: '1px solid rgba(44,105,117,0.3)', color: '#2c6975',
+              border: '1px solid rgba(184,69,0,0.3)', color: '#b84500',
               fontSize: 14, fontWeight: 500, background: 'transparent',
               transition: 'all 0.15s',
             }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#2c6975'; e.currentTarget.style.color = 'white'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2c6975'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#b84500'; e.currentTarget.style.color = 'white'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#b84500'; }}
             >
               <LinkedInIcon size={16} /> LinkedIn
             </a>
