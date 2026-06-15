@@ -289,112 +289,120 @@ function Hero() {
 // ─── Agentic Illustration ─────────────────────────────────────────────────────
 
 function AgenticIllustration() {
-  const cx = 200, cy = 178;
-  const agents = [
-    { x: 72,  y: 75,  label: 'Research', icon: 'search' },
-    { x: 328, y: 75,  label: 'Code',     icon: 'code'   },
-    { x: 72,  y: 295, label: 'Analyze',  icon: 'chart'  },
-    { x: 328, y: 295, label: 'Deploy',   icon: 'rocket' },
-  ];
-
   return (
-    <svg viewBox="0 0 400 390" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '100%', maxWidth: 380, height: 'auto' }}>
+    <svg viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg"
+      style={{ width: '100%', maxWidth: 420, height: 'auto' }}>
 
-      {/* Soft center aura */}
-      <circle cx={cx} cy={cy} r="92" fill="rgba(184,69,0,0.03)" />
-      <circle cx={cx} cy={cy} r="58" fill="rgba(184,69,0,0.045)" />
+      {/* ── Connector lines (behind everything) ── */}
+      {/* Research → laptop left */}
+      <path d="M130,112 L92,112 L92,88" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
+      {/* Analyze → laptop right */}
+      <path d="M310,112 L352,112 L352,88" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
+      {/* Code → laptop left */}
+      <path d="M130,155 L60,155" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
+      {/* Deploy → laptop right */}
+      <path d="M310,155 L376,155" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
+      {/* Orchestrate → laptop bottom */}
+      <path d="M220,202 L220,268" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
 
-      {/* Dashed connection lines */}
-      {agents.map((a, i) => (
-        <line key={i}
-          x1={cx} y1={cy} x2={a.x} y2={a.y}
-          stroke="#b84500" strokeWidth="1" strokeOpacity="0.18"
-          strokeDasharray="5 4"
-        />
-      ))}
+      {/* ── Laptop ── */}
+      {/* Screen bezel */}
+      <rect x="130" y="55" width="180" height="130" rx="10"
+        fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.45" />
+      {/* Screen glass */}
+      <rect x="139" y="64" width="162" height="112" rx="5" fill="rgba(184,69,0,0.035)" />
+      {/* Camera dot */}
+      <circle cx="220" cy="68" r="2.5" fill="rgba(184,69,0,0.22)" />
+      {/* Keyboard chassis */}
+      <path d="M108,188 L332,188 L342,202 L98,202 Z"
+        fill="rgba(184,69,0,0.05)" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.28" />
+      {/* Trackpad */}
+      <rect x="192" y="191" width="56" height="7" rx="3.5" fill="rgba(184,69,0,0.08)" />
 
-      {/* Agent circles */}
-      {agents.map((a) => (
-        <g key={a.label}>
-          <circle cx={a.x} cy={a.y} r="30"
-            fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.38" />
-          {a.icon === 'search' && <>
-            <circle cx={a.x - 3} cy={a.y - 3} r="9" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.65" />
-            <line x1={a.x + 4} y1={a.y + 4} x2={a.x + 11} y2={a.y + 11} stroke="#b84500" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.65" />
-          </>}
-          {a.icon === 'code' && <>
-            <path d={`M${a.x-10} ${a.y-5}L${a.x-16} ${a.y}L${a.x-10} ${a.y+5}`} stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.65" />
-            <path d={`M${a.x+10} ${a.y-5}L${a.x+16} ${a.y}L${a.x+10} ${a.y+5}`} stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.65" />
-            <line x1={a.x-4} y1={a.y+7} x2={a.x+4} y2={a.y-7} stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.65" />
-          </>}
-          {a.icon === 'chart' && <>
-            <rect x={a.x - 10} y={a.y + 1} width="6" height="7" fill="#b84500" fillOpacity="0.45" rx="1" />
-            <rect x={a.x - 2} y={a.y - 6} width="6" height="14" fill="#b84500" fillOpacity="0.45" rx="1" />
-            <rect x={a.x + 6} y={a.y - 2} width="6" height="10" fill="#b84500" fillOpacity="0.45" rx="1" />
-          </>}
-          {a.icon === 'rocket' && <>
-            <path d={`M${a.x} ${a.y-12}L${a.x-7} ${a.y+7}L${a.x} ${a.y+2}L${a.x+7} ${a.y+7}Z`} fill="#b84500" fillOpacity="0.3" stroke="#b84500" strokeWidth="1" strokeLinejoin="round" />
-            <circle cx={a.x} cy={a.y - 4} r="3" fill="#b84500" fillOpacity="0.5" />
-            <line x1={a.x - 7} y1={a.y + 7} x2={a.x - 10} y2={a.y + 13} stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.5" />
-            <line x1={a.x + 7} y1={a.y + 7} x2={a.x + 10} y2={a.y + 13} stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.5" />
-          </>}
-          <text x={a.x} y={a.y + 47} textAnchor="middle"
-            fontSize="11" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">
-            {a.label}
-          </text>
-        </g>
-      ))}
-
-      {/* Engineer figure — chilling in chair */}
-      {/* Chair base */}
-      <rect x="152" y="207" width="98" height="9" rx="4.5" fill="rgba(184,69,0,0.1)" />
-      {/* Chair back */}
-      <rect x="236" y="166" width="8" height="54" rx="4" fill="rgba(184,69,0,0.1)" />
-
-      {/* Torso — leaning back */}
-      <rect x="165" y="166" width="62" height="44" rx="12"
-        fill="rgba(184,69,0,0.08)" stroke="#b84500" strokeWidth="1.5" />
-
+      {/* ── Robot on screen ── */}
+      {/* Antenna */}
+      <line x1="220" y1="86" x2="220" y2="76" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
+      <circle cx="220" cy="73" r="3" fill="#b84500" fillOpacity="0.5" />
       {/* Head */}
-      <circle cx="183" cy="151" r="15"
-        fill="rgba(184,69,0,0.07)" stroke="#b84500" strokeWidth="1.5" />
-
-      {/* Face */}
-      <circle cx="179" cy="149" r="1.5" fill="#b84500" />
-      <circle cx="187" cy="149" r="1.5" fill="#b84500" />
-      <path d="M178 155 Q183 160 188 155" stroke="#b84500" strokeWidth="1.4" strokeLinecap="round" />
-
-      {/* Left arm — raised/waving casually */}
-      <path d="M165 178 L148 162 L140 165" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-
-      {/* Right arm — holding coffee */}
-      <path d="M227 178 L240 165" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Mug */}
-      <rect x="238" y="157" width="15" height="12" rx="2.5"
-        fill="rgba(184,69,0,0.12)" stroke="#b84500" strokeWidth="1.2" />
-      <path d="M253 160 Q258 160 258 163.5 Q258 167 253 167"
-        stroke="#b84500" strokeWidth="1.2" fill="none" />
-      {/* Steam */}
-      <path d="M243 155 Q241 150 243 146" stroke="#b84500" strokeWidth="1" strokeLinecap="round" strokeOpacity="0.35" />
-      <path d="M248 154 Q246 149 248 145" stroke="#b84500" strokeWidth="1" strokeLinecap="round" strokeOpacity="0.35" />
-
-      {/* Legs — relaxed on ottoman */}
-      <path d="M178 211 L176 226 L158 226" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M213 211 L215 226 L233 226" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-
-      {/* Caption */}
-      <text x="196" y="250" textAnchor="middle"
-        fontSize="10" fill="#c4b5a5" fontFamily="DM Sans, system-ui, sans-serif" fontStyle="italic">
-        you (chilling)
+      <rect x="208" y="87" width="24" height="20" rx="5"
+        fill="rgba(184,69,0,0.09)" stroke="#b84500" strokeWidth="1.4" strokeOpacity="0.6" />
+      {/* Eyes */}
+      <circle cx="215" cy="95" r="2.8" fill="#b84500" fillOpacity="0.42" />
+      <circle cx="225" cy="95" r="2.8" fill="#b84500" fillOpacity="0.42" />
+      {/* Mouth */}
+      <path d="M214 103 Q220 108 226 103" stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.6" />
+      {/* Body */}
+      <rect x="211" y="110" width="18" height="15" rx="4"
+        fill="rgba(184,69,0,0.09)" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.5" />
+      {/* Arms */}
+      <line x1="211" y1="115" x2="204" y2="122" stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.42" />
+      <line x1="229" y1="115" x2="236" y2="122" stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.42" />
+      {/* Label on screen */}
+      <text x="220" y="145" textAnchor="middle"
+        fontSize="11" fontWeight="600" fill="#b84500" fillOpacity="0.6"
+        fontFamily="DM Sans, system-ui, sans-serif" letterSpacing="0.06em">
+        Ai Agent
       </text>
 
-      {/* Floating accent dots */}
-      <circle cx="143" cy="122" r="3.5" fill="#b84500" fillOpacity="0.15" />
-      <circle cx="257" cy="120" r="3.5" fill="#b84500" fillOpacity="0.15" />
-      <circle cx="137" cy="236" r="3" fill="#b84500" fillOpacity="0.15" />
-      <circle cx="263" cy="234" r="3" fill="#b84500" fillOpacity="0.15" />
-      <circle cx="200" cy="90" r="2.5" fill="#b84500" fillOpacity="0.1" />
+      {/* ── Floating capability cards ── */}
+
+      {/* Research — top left */}
+      <g transform="translate(38, 38)">
+        <rect width="58" height="58" rx="11" fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.36" />
+        <circle cx="25" cy="22" r="9" stroke="#b84500" strokeWidth="1.4" strokeOpacity="0.6" />
+        <line x1="31" y1="29" x2="40" y2="38" stroke="#b84500" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.6" />
+        <text x="29" y="53" textAnchor="middle" fontSize="9" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">Research</text>
+      </g>
+
+      {/* Analyze — top right */}
+      <g transform="translate(318, 38)">
+        <rect width="58" height="58" rx="11" fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.36" />
+        <rect x="10" y="30" width="8" height="10" fill="#b84500" fillOpacity="0.36" rx="1.5" />
+        <rect x="22" y="20" width="8" height="20" fill="#b84500" fillOpacity="0.36" rx="1.5" />
+        <rect x="34" y="24" width="8" height="16" fill="#b84500" fillOpacity="0.36" rx="1.5" />
+        <text x="29" y="53" textAnchor="middle" fontSize="9" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">Analyze</text>
+      </g>
+
+      {/* Code — left */}
+      <g transform="translate(4, 128)">
+        <rect width="58" height="58" rx="11" fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.36" />
+        <path d="M19 22 L12 28 L19 34" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.6" />
+        <path d="M39 22 L46 28 L39 34" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.6" />
+        <line x1="25" y1="36" x2="33" y2="20" stroke="#b84500" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
+        <text x="29" y="53" textAnchor="middle" fontSize="9" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">Code</text>
+      </g>
+
+      {/* Deploy — right */}
+      <g transform="translate(376, 128)">
+        <rect width="58" height="58" rx="11" fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.36" />
+        <path d="M29 14 L22 34 L29 29 L36 34 Z" fill="#b84500" fillOpacity="0.28" stroke="#b84500" strokeWidth="1" strokeLinejoin="round" />
+        <circle cx="29" cy="22" r="3.5" fill="#b84500" fillOpacity="0.48" />
+        <line x1="22" y1="33" x2="19" y2="40" stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.35" />
+        <line x1="36" y1="33" x2="39" y2="40" stroke="#b84500" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.35" />
+        <text x="29" y="53" textAnchor="middle" fontSize="9" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">Deploy</text>
+      </g>
+
+      {/* Orchestrate — bottom center */}
+      <g transform="translate(192, 268)">
+        <rect width="58" height="58" rx="11" fill="white" stroke="#b84500" strokeWidth="1.5" strokeOpacity="0.36" />
+        {/* DAG nodes */}
+        <circle cx="13" cy="22" r="5" stroke="#b84500" strokeWidth="1.3" strokeOpacity="0.55" />
+        <circle cx="29" cy="13" r="5" stroke="#b84500" strokeWidth="1.3" strokeOpacity="0.55" />
+        <circle cx="45" cy="22" r="5" stroke="#b84500" strokeWidth="1.3" strokeOpacity="0.55" />
+        <circle cx="29" cy="33" r="5" stroke="#b84500" strokeWidth="1.3" strokeOpacity="0.55" />
+        <line x1="18" y1="19" x2="24" y2="16" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.45" />
+        <line x1="34" y1="16" x2="40" y2="19" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.45" />
+        <line x1="16" y1="26" x2="24" y2="30" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.45" />
+        <line x1="34" y1="30" x2="42" y2="26" stroke="#b84500" strokeWidth="1.2" strokeOpacity="0.45" />
+        <text x="29" y="53" textAnchor="middle" fontSize="9" fill="#9ca3af" fontFamily="DM Sans, system-ui, sans-serif">Orchestrate</text>
+      </g>
+
+      {/* ── Accent dots ── */}
+      <circle cx="108" cy="52" r="3" fill="#b84500" fillOpacity="0.12" />
+      <circle cx="330" cy="52" r="3" fill="#b84500" fillOpacity="0.12" />
+      <circle cx="104" cy="230" r="2.5" fill="#b84500" fillOpacity="0.1" />
+      <circle cx="336" cy="230" r="2.5" fill="#b84500" fillOpacity="0.1" />
+      <circle cx="220" cy="235" r="2" fill="#b84500" fillOpacity="0.1" />
     </svg>
   );
 }
