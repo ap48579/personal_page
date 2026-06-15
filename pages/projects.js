@@ -3,9 +3,9 @@ import styles from '../styles/Projects.module.css';
 
 const projects = [
   {
-    title: 'Agentic coding assistant',
+    title: 'Autonomous self-healing assistant',
     tools:'[ Langgraph, codellama, ollama, and streamlit ]',
-    description: 'Chatbot that helps debug a code, and develop unit tests for a given user code.',
+    description: 'Agent that auto heals, researches, ans solves problems autonomously',
     mediumUrl: '#',
     githubUrl: 'https://github.com/ap48579/ML_portfolio/tree/dev/chatbot/coding_assistant'
   },

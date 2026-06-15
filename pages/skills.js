@@ -6,6 +6,7 @@ const skills = {
     "Computer vision",
     "NLP",
     "LLM",
+    "Agents",
     "Prompt Engineering",
     "RAG",
     "Time series forecasting",

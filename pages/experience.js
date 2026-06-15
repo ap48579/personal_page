@@ -3,12 +3,21 @@ import styles from '../styles/Experience.module.css';
 
 const experiences = [
   {
+    title: 'Principle data scientist',
+    org: 'Dell technologies',
+    date: '2025 – Present',
+    description: [
+      'Building Agentic AI solutions for supply chain end to end automation',
+      'Building multimodal AI agents to assist with hardware repair'
+    ]
+  }
+  ,
+  {
     title: 'Senior data scientist',
     org: 'Dell technologies',
-    date: '2023 – Present',
+    date: '2023 – 2025',
     description: [
-      'Building multimodal AI agents to assist with hardware repair',
-      'Developed a Gen business intelligence chatbot to answer questions on structured data (SQL, csv, or excel)',
+      'Developed a Generative business intelligence chatbot to answer questions on structured data (SQL, csv, or excel)',
       'Expert at developing supply chain forecasting models to support demand planning, and inventory management.'
     ]
   },
@@ -22,26 +31,12 @@ const experiences = [
     ]
   },
   {
-    title: 'Graduate researcher',
-    org: 'UT Austin',
-    date: '2018 – 2023',
-    description: [
-      'Built statistical models to better understand ion transport in polymeric melts.'
-    ]
-  },
-  {
     title: 'Product manager',
     org: 'ICICI Bank',
     date: '2017 – 2018',
     description: [
       'Co-owner of strategy, roadmap, and customer experience for payment modules in the mobile banking app of ICICI bank.'
     ]
-  },
-  {
-    title: 'B.Tech - Chemical engineering',
-    org: 'IIT Madras, India',
-    date: '2013 – 2017',
-    description: []
   }
 ];
 

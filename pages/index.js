@@ -227,8 +227,8 @@ function Header() {
 function Hero() {
   const typed = useTypewriter([
     "Hi, I'm Akhilesh 👋",
-    "I turn ideas into AI",
-    "Let's build something greats",
+    "I turn ideas into product",
+    "Let's build something great",
   ]);
 
   return (
@@ -434,7 +434,7 @@ function AboutSection() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <p style={{ fontSize: 15, color: '#374151', lineHeight: 1.75, margin: 0 }}>
-              I&rsquo;m a Machine Learning Engineer who went from Chemical Engineering at{' '}
+              I&rsquo;m a AI Engineer who went from Chemical Engineering at{' '}
               <strong style={{ color: '#b84500' }}>IIT Madras</strong> to Product Management at{' '}
               <strong style={{ color: '#b84500' }}>ICICI Bank</strong>, then research at{' '}
               <strong style={{ color: '#b84500' }}>UT Austin</strong> before finding where I
@@ -450,9 +450,9 @@ function AboutSection() {
 
           <div style={{ marginTop: 32, display: 'flex', gap: 32 }}>
             {[
-              { value: '5+', label: 'Years in ML/AI' },
+              { value: '6+', label: 'Years in ML/AI' },
               { value: '3', label: 'Companies' },
-              { value: 'IIT', label: 'Madras Alum' },
+              { value: 'IIT Madras & UT austin', label: ' Alum' },
             ].map(({ value, label }) => (
               <div key={label}>
                 <p style={{ fontSize: 28, fontWeight: 700, color: '#b84500', margin: '0 0 2px' }}>{value}</p>
