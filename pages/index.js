@@ -9,7 +9,7 @@ const experiences = [
     org: 'Dell Technologies',
     period: '2025 – Present',
     bullets: [
-      'Building Agentic AI solutions for supply chain end-to-end automation',
+      'Building Agentic AI solutions for supply chain end-to-end automation - PO automation, Fraud detection, Network optimization',
       'Building multimodal AI agents to assist with hardware repair',
     ],
   },
@@ -18,7 +18,6 @@ const experiences = [
     org: 'Dell Technologies',
     period: '2023 – Present',
     bullets: [
-      'Building multimodal AI agents to assist with hardware repair diagnostics',
       'Developed a generative BI chatbot for structured data (SQL, CSV, Excel)',
       'Built supply chain forecasting models for demand planning and inventory management',
     ],
@@ -460,7 +459,7 @@ function AboutSection() {
             {[
               { value: '6+', label: 'Years in ML/AI' },
               { value: '3', label: 'Companies' },
-              { value: 'IIT Madras & UT austin', label: ' Alum' },
+              { value: 'IIT and UT', label: ' Alum' },
             ].map(({ value, label }) => (
               <div key={label}>
                 <p style={{ fontSize: 28, fontWeight: 700, color: '#b84500', margin: '0 0 2px' }}>{value}</p>
