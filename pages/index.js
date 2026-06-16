@@ -17,7 +17,7 @@ const experiences = [
   {
     title: 'Senior Data Scientist',
     org: 'Dell Technologies',
-    period: '2023 – Present',
+    period: '2023 – 2025',
     bullets: [
       'Developed a generative BI chatbot for structured data (SQL, CSV, Excel)',
       'Built supply chain forecasting models for demand planning and inventory management',
