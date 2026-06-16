@@ -293,6 +293,39 @@ li {
   align-items: center;
 }
 
+/* ── Blog ───────────────────────────────────────── */
+
+.blog-card {
+  background: white;
+  border: 1px solid #e3e2dc;
+  border-radius: 16px;
+  padding: 28px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.blog-card:hover {
+  box-shadow: 0 4px 20px rgba(184,69,0,0.06);
+  border-color: rgba(184,69,0,0.2);
+}
+
+.blog-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #b84500;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.blog-expand-btn:hover {
+  color: #8b3300;
+}
+
 /* ── Mobile ─────────────────────────────────────── */
 
 @media (max-width: 700px) {

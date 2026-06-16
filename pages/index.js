@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -188,14 +189,26 @@ function Header() {
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       maxWidth: 1280, margin: '0 auto',
     }}>
-      {/* Social icons — slide in from left */}
-      <div className="anim-left" style={{ display: 'flex', gap: 4 }}>
-        <a href="https://github.com/ap48579" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
-          <GitHubIcon />
-        </a>
-        <a href="https://www.linkedin.com/in/akhilesh-paspureddi/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
-          <LinkedInIcon />
-        </a>
+      {/* Blog + social icons — slide in from left */}
+      <div className="anim-left" style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+        <Link href="/blog" style={{
+          color: '#6b7280', fontSize: 13, fontWeight: 500,
+          textTransform: 'uppercase', letterSpacing: '0.08em',
+          transition: 'color 0.15s',
+        }}
+          onMouseEnter={e => e.currentTarget.style.color = '#b84500'}
+          onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
+        >
+          Blog
+        </Link>
+        <div style={{ display: 'flex', gap: 4 }}>
+          <a href="https://github.com/ap48579" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
+            <GitHubIcon />
+          </a>
+          <a href="https://www.linkedin.com/in/akhilesh-paspureddi/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
+            <LinkedInIcon />
+          </a>
+        </div>
       </div>
 
       {/* Get in Touch — slide in from right */}
