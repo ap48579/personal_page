@@ -9,7 +9,7 @@ const experiences = [
     org: 'Dell Technologies',
     period: '2025 – Present',
     bullets: [
-      'Building Agentic AI solutions for supply chain end-to-end automation - PO automation, Fraud detection, Network optimization',
+      'Building Agentic AI solutions for supply chain\'s end-to-end automation - PO automation, Fraud detection, Network optimization',
       'Building multimodal AI agents to assist with hardware repair',
     ],
   },
@@ -46,13 +46,7 @@ const projects = [
     title: 'Autonomous Self-Healing Assistant',
     stack: ['LangGraph', 'CodeLlama', 'Ollama', 'Streamlit'],
     description: 'Agent that auto-heals, researches, and solves problems autonomously.',
-    github: 'https://github.com/ap48579/ML_portfolio/tree/dev/chatbot/coding_assistant',
-  },
-  {
-    title: 'Cricket Match Win Probability',
-    stack: ['Python', 'XGBoost', 'Streamlit'],
-    description: 'Real-time win probability predictor during an IPL match.',
-    github: 'https://github.com/ap48579/ML_portfolio/tree/dev/chatbot/ipl_predictions',
+    github: null,
   },
   {
     title: 'Nutrition Content from Food Labels',
