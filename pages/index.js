@@ -193,7 +193,7 @@ function Header() {
         <a href="https://github.com/ap48579" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
           <GitHubIcon />
         </a>
-        <a href="#" className="social-icon" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/akhilesh-paspureddi/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
           <LinkedInIcon />
         </a>
       </div>
@@ -731,7 +731,7 @@ function ContactSection() {
             >
               <GitHubIcon size={16} /> GitHub
             </a>
-            <a href="#" style={{
+            <a href="https://www.linkedin.com/in/akhilesh-paspureddi/" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
               padding: '10px 18px', borderRadius: 6,
               border: '1px solid rgba(184,69,0,0.3)', color: '#b84500',
