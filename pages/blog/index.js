@@ -55,7 +55,7 @@ export default function BlogIndex() {
                 </h2>
 
                 <p style={{ fontSize: 12.5, color: '#9ca3af', margin: '0 0 14px', letterSpacing: '0.02em' }}>
-                  {post.date} · {post.readTime}
+                  {post.series ? `${post.date} · ${post.series.length} dispatches` : `${post.date} · ${post.readTime}`}
                 </p>
 
                 <p style={{ fontSize: 15, color: '#374151', lineHeight: 1.7, margin: '0 0 16px' }}>
@@ -63,7 +63,7 @@ export default function BlogIndex() {
                 </p>
 
                 <span className="blog-expand-btn">
-                  Read more <ArrowIcon size={14} />
+                  {post.series ? 'Read the thread' : 'Read more'} <ArrowIcon size={14} />
                 </span>
               </Link>
             ))}

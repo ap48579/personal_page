@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { blogPosts } from '../../data/blogPosts';
 import BlogHeader from '../../components/BlogHeader';
+import ThreadPost from '../../components/ThreadPost';
 import { BackArrowIcon } from '../../components/icons';
 
 export function getStaticPaths() {
@@ -54,13 +55,17 @@ export default function BlogPost({ post }) {
             {post.date} · {post.readTime}
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            {post.content.map((para, i) => (
-              <p key={i} style={{ fontSize: 16, color: '#374151', lineHeight: 1.8, margin: 0 }}>
-                {para}
-              </p>
-            ))}
-          </div>
+          {post.series ? (
+            <ThreadPost series={post.series} />
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {post.content.map((para, i) => (
+                <p key={i} style={{ fontSize: 16, color: '#374151', lineHeight: 1.8, margin: 0 }}>
+                  {para}
+                </p>
+              ))}
+            </div>
+          )}
 
           <div style={{ marginTop: 56, paddingTop: 24, borderTop: '1px solid #e3e2dc' }}>
             <Link href="/blog" className="blog-expand-btn">

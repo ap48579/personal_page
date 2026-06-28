@@ -2,6 +2,80 @@
 
 export const blogPosts = [
   {
+    slug: 'agentic-fitness-tracker',
+    title: 'What I learned building Agentic fitness tracker?',
+    date: 'June 28, 2026',
+    readTime: '7 min read',
+    tags: ['Agentic AI', 'FitTrack', 'Build Log'],
+    excerpt: 'A running build log on FitTrack, a free-tier nutrition tracker — fine-tuning a vision-language model to count calories from photos, and teaching a small LLM to read nutrition labels so I don’t have to. Three dispatches so far, more as they ship.',
+    // Thread-style post: rendered as an in-order feed instead of flat paragraphs.
+    series: [
+      {
+        label: 'Build Log #1',
+        date: 'June 28, 2026',
+        title: 'FitTrack: A Personal Nutrition Tracker, Built on Free-Tier Infrastructure',
+        blocks: [
+          { type: 'p', text: "I track what I eat. Every tracker I've tried wants a subscription, a login wall, or a dozen permissions I don't want to grant — so I'm building my own. FitTrack is a single-user calorie and food log, and the constraint I set for myself going in was: **everything runs on free-tier infrastructure, and the frontend has zero npm dependencies.**" },
+          { type: 'h3', text: 'The shape of it' },
+          { type: 'p', text: "The frontend is plain HTML/CSS/JS — no framework, no build step. It talks to a handful of Vercel serverless functions, which in turn talk to Supabase for auth and storage (Postgres, with row-level security so the single account's data stays scoped to itself). Logging in is passwordless — a magic link emailed to me, no password to forget." },
+          { type: 'p', text: 'There are three ways to log a meal:' },
+          { type: 'list', items: [
+            "**Snap a photo.** An image-classification model (a Food-101 fine-tune) guesses the dish, and a local nutrition table fills in calories and macros for a typical portion. I review and adjust before saving.",
+            "**Scan a barcode.** A packaged product's barcode gets looked up against Open Food Facts' free, open database.",
+            "**Type it in manually.** Sometimes that's just faster.",
+          ] },
+          { type: 'p', text: 'Once a week, a scheduled job emails me a summary of the week’s eating — nothing fancier than a cron-triggered serverless function and a free email API.' },
+          { type: 'h3', text: 'Why this matters to me' },
+          { type: 'p', text: 'None of this is novel engineering — it’s a personal tool, deliberately small. What I find interesting is treating "free tier only" as a real design constraint rather than an afterthought: it forces decisions about where AI inference actually needs to happen, what can be a static lookup table instead of a model call, and when "good enough" beats "technically correct."' },
+          { type: 'p', text: "That tension is exactly what the next two posts are about. The photo-to-calories step currently leans on a small, fixed-category classifier — it works, but it's limited. I'm now planning to train my own vision-language model on real nutrition data to replace it, and separately building a feature to read packaged-food labels and flag ingredients worth a second look. Neither exists yet. Both start as plans, written up as specs before a line of training code runs — which is the point of this series: showing the project as it actually evolves, not just the parts that already work." },
+        ],
+      },
+      {
+        label: 'Build Log #2',
+        date: 'June 28, 2026',
+        title: 'Teaching a Small Vision-Language Model to Count Calories',
+        blocks: [
+          { type: 'p', text: "FitTrack's photo-logging feature currently works like this: an image-classification model guesses which of 101 fixed Food-101 categories your photo most resembles, and a static lookup table fills in the calories. It works for pizza and sushi. It has nothing to say about anything outside those 101 categories, and it has no idea how big your portion actually is — that's still a number I type in by hand." },
+          { type: 'p', text: 'I want to fix both problems by training my own model. This post is the plan, written before any training has happened.' },
+          { type: 'h3', text: 'What the literature says' },
+          { type: 'p', text: "Before committing to an approach, I looked at how others have tackled image-to-calorie estimation. The standard academic answer is a CNN regression head on top of a pretrained vision backbone (ResNet, EfficientNet) — predict a number directly from pixels. It works, but 2D photos don't carry volume information, so accuracy is capped regardless of the backbone." },
+          { type: 'p', text: "More recent work — papers like *CalorieLLaVA* and *CaLoRAify* — fine-tune vision-language models instead, and report beating both the CNN baselines *and* zero-shot GPT-4V/4o. The reason given is intuitive once you see it: a VLM can reason about what ingredients are on the plate and look up nutrition data for them, rather than just regressing a single number from raw pixels. Language-based reasoning turns out to be a real advantage here, not just a nicer interface." },
+          { type: 'h3', text: 'The plan' },
+          { type: 'list', items: [
+            "**Data:** [Nutrition5k](https://github.com/google-research-datasets/Nutrition5k), Google Research's dataset of ~5,000 real cafeteria dishes with ground-truth calories and macros computed from the USDA nutrient database. Free, CC-licensed, exactly the kind of grounded supervision a fixed classifier-plus-lookup-table approach doesn't have.",
+            "**Base model:** Qwen2-VL-2B-Instruct — small enough to fine-tune with LoRA on a single free-tier GPU, rather than needing a cluster.",
+            "**Method:** QLoRA (4-bit quantized base + LoRA adapters), a few epochs over the ~5k examples. This is a small fine-tune, not a from-scratch training run — the expectation is days, not weeks.",
+            "**Evaluation:** mean absolute error on held-out dishes, benchmarked directly against the current Food-101-plus-lookup-table baseline. If it doesn't beat the thing it's replacing, it doesn't ship.",
+            "**Hosting:** a free Hugging Face Space on ZeroGPU, sized to one person's daily meal-logging volume.",
+          ] },
+          { type: 'h3', text: 'Where it stands' },
+          { type: 'p', text: 'The spec is written, and so is the end-to-end notebook — data download, preprocessing, training loop, evaluation. Nothing has been trained yet. Next post in this thread will be the actual numbers: does a fine-tuned 2B VLM really beat a 101-category classifier on real food photos, and by how much.' },
+        ],
+      },
+      {
+        label: 'Build Log #3',
+        date: 'June 28, 2026',
+        title: "Reading Nutrition Labels So You Don't Have To",
+        blocks: [
+          { type: 'p', text: "Not everything I eat is a plate of food I can photograph and classify. A lot of it comes wrapped in packaging, with a tiny-print ingredients list I never actually read. I want to point my phone at that label and get back two things: an estimated calorie count, and a flag on any ingredients worth knowing about — high-fructose corn syrup, trans fats, artificial dyes, that kind of thing." },
+          { type: 'p', text: "This is a different problem from the photo-to-calories case in the previous post: it needs to read text, not classify a dish. Here's the plan, again written before any training has happened." },
+          { type: 'h3', text: "Why I'm not training an OCR model" },
+          { type: 'p', text: "My first instinct was: train an OCR model on photos of nutrition labels. I talked myself out of it. Raw pixel-to-character OCR needs an enormous amount of labeled text-line data to do well, and that data doesn't exist for nutrition labels specifically — building it from scratch isn't a reasonable scope for a side project. Meanwhile, general-purpose open OCR models are already quite good at raw text recognition out of the box." },
+          { type: 'p', text: "The actual gap isn't reading the text. It's doing something useful with text that's noisy, dense, and full of chemical-sounding ingredient names. That's a much more tractable thing to fine-tune." },
+          { type: 'h3', text: 'The plan: two stages, one trained' },
+          { type: 'list', items: [
+            '**OCR (untrained):** an existing open model, GLM-OCR, reads the raw text off the label photo as-is.',
+            '**Structuring + reasoning (fine-tuned):** a small instruction-tuned LLM (Qwen2.5-3B-Instruct) takes that raw, possibly messy text and outputs a clean ingredients list, flagged unhealthy ingredients with short reasons, and a parsed calorie value.',
+          ] },
+          { type: 'p', text: "Only the second stage gets trained. The training data comes from [Open Food Facts](https://world.openfoodfacts.org)'s public database — millions of products, each with both a cleaned ingredients list and structured fields (additive tags, Nutri-Score, NOVA processing group) I can use to generate unhealthy-ingredient labels with rules, rather than hand-labeling thousands of products myself." },
+          { type: 'p', text: "One honest gap in this plan: Open Food Facts doesn't expose the raw, noisy OCR text paired with the clean version in its bulk export — that pairing lives per-image on their servers, not in the dataset I'm pulling from. As a first pass, I'm synthesizing OCR noise on the clean text instead (character swaps, dropped spaces, the usual OCR error patterns) rather than collecting real noisy/clean pairs at this stage. It's a deliberate simplification, not a final answer — if the model struggles on real photographed labels later, this is the first thing I'll revisit." },
+          { type: 'h3', text: 'Where it stands' },
+          { type: 'p', text: 'Spec and pipeline notebook are both written. No training run yet. The next post in this thread will say whether the synthetic-noise shortcut held up against real label photos, or whether it’s time to go collect real OCR pairs the harder way.' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'agentic-ai-supply-chain',
     title: 'What I Learned Building Agentic AI for Supply Chain',
     date: 'March 1, 2026',
