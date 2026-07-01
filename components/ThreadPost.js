@@ -1,7 +1,7 @@
 // Renders a `series` of build-log entries as an in-order feed, like a thread.
 
 function renderInline(text) {
-  const regex = /\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\(([^)]+)\)/g;
+  const regex = /\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)/g;
   const parts = [];
   let lastIndex = 0;
   let match;
@@ -14,11 +14,19 @@ function renderInline(text) {
       parts.push(<strong key={key++} style={{ color: '#1c1c1a', fontWeight: 600 }}>{match[1]}</strong>);
     } else if (match[2] !== undefined) {
       parts.push(<em key={key++}>{match[2]}</em>);
+    } else if (match[3] !== undefined) {
+      parts.push(
+        <code key={key++} style={{
+          fontFamily: 'monospace', fontSize: '0.88em',
+          background: 'rgba(184,69,0,0.07)', color: '#b84500',
+          padding: '1px 5px', borderRadius: 3,
+        }}>{match[3]}</code>
+      );
     } else {
       parts.push(
-        <a key={key++} href={match[4]} target="_blank" rel="noopener noreferrer"
+        <a key={key++} href={match[5]} target="_blank" rel="noopener noreferrer"
           style={{ color: '#b84500', textDecoration: 'underline', textDecorationColor: 'rgba(184,69,0,0.35)' }}>
-          {match[3]}
+          {match[4]}
         </a>
       );
     }
@@ -48,6 +56,54 @@ function Block({ block }) {
           </li>
         ))}
       </ul>
+    );
+  }
+  if (block.type === 'code') {
+    return (
+      <pre style={{
+        margin: '6px 0 16px', padding: '14px 16px', borderRadius: 10,
+        background: '#1c1c1a', color: '#e5e5e0',
+        fontSize: 13, lineHeight: 1.65, overflowX: 'auto',
+        fontFamily: 'monospace', whiteSpace: 'pre',
+      }}>
+        {block.text}
+      </pre>
+    );
+  }
+  if (block.type === 'table') {
+    return (
+      <div style={{ overflowX: 'auto', margin: '6px 0 16px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+          <thead>
+            <tr>
+              {block.headers.map((h, i) => (
+                <th key={i} style={{
+                  textAlign: 'left', padding: '8px 12px',
+                  borderBottom: '2px solid #e3e2dc',
+                  color: '#6b7280', fontWeight: 600,
+                  fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase',
+                }}>
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {block.rows.map((row, i) => (
+              <tr key={i} style={{ borderBottom: '1px solid #f0efea' }}>
+                {row.map((cell, j) => (
+                  <td key={j} style={{
+                    padding: '9px 12px', color: j === 0 ? '#1c1c1a' : '#374151',
+                    fontWeight: j === 0 ? 500 : 400, verticalAlign: 'top',
+                  }}>
+                    {renderInline(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
   return (
